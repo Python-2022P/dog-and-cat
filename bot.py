@@ -8,6 +8,7 @@ TOKEN = os.environ.get('TOKEN')
 
 
 def start(update: Update, context):
+    print(update.message.from_user.full_name, 'start')
     update.message.reply_text('Hello!', reply_markup=ReplyKeyboardMarkup([['🐶']], resize_keyboard=True))
 
 def send_dog(update: Update, context):
@@ -19,7 +20,10 @@ def send_dog(update: Update, context):
 
 def inline_query(update: Update, context):
     data = update.callback_query.data
-    print(data)
+    if data == 'like':
+        update.callback_query.answer('like')
+    elif data == 'dislike':
+        update.callback_query.answer('dislike')
     
 
 
